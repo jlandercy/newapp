@@ -11,22 +11,25 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import base64
+import binascii
+import pathlib
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+APP_PACKAGE = pathlib.Path(__file__).parent.parent
+APP_NAME = os.environ.get('APP_NAME', APP_PACKAGE.parts[-1])
+BASE_DIR = str(APP_PACKAGE)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('APP_SECRETKEY', base64.b64encode(os.urandom(64)).decode())
+SECRET_KEY = os.environ.get('APP_SECRETKEY', binascii.hexlify(os.urandom(64)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('APP_DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.environ.get('APP_HOST', 'localhost')]
 
 
 # Application definition
@@ -50,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'newapp.urls'
+ROOT_URLCONF = APP_NAME + '.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'newapp.wsgi.application'
+WSGI_APPLICATION = APP_NAME + '.wsgi.application'
 
 
 # Database
@@ -76,8 +79,12 @@ WSGI_APPLICATION = 'newapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('APP_DATABASE_NAME', APP_NAME),
+        'USER': os.environ.get('APP_DATABASE_USER', 'django'),
+        'PASSWORD': os.environ.get('APP_DATABASE_PASSWORD', 'django'),
+        'HOST': os.environ.get('APP_DATABASE_HOST', 'localhost'),
+        'PORT': os.environ.get('APP_DATABASE_PORT', '5432'),
     }
 }
 
