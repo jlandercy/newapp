@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Errors | newapp{% endblock %}
+
+{% block content %}
+
+<div class="alert alert-danger">
+{% if message %}
+<h4>Error {{ status }}</h4>
+<p><strong>{{ errortype }}:</strong> {{ message }}</p>
+<p>This incident will be reported to administrator.</p>
+{% else %}
+Ooops something went wrong, we apologize for the incovenience...
+{% endif %}
+</div>
+
+{% endblock %}
