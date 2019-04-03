@@ -55,4 +55,4 @@ def handleErrors(request, exception, *args, **kwargs):
 handler400 = handleErrors
 handler403 = handleErrors
 handler404 = handleErrors
-handler500 = handleErrors
+#handler500 = handleErrors
