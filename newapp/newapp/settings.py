@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [os.environ.get('APP_HOST', 'localhost')]
 # Application definition
 
 INSTALLED_APPS = [
+    'polls.apps.PollsConfig',  # Dummy app from tutorial
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
