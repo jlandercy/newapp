@@ -19,7 +19,6 @@ APP_PACKAGE = pathlib.Path(__file__).parent.parent
 APP_NAME = os.environ.get('APP_NAME', APP_PACKAGE.parts[-1])
 BASE_DIR = str(APP_PACKAGE)
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -63,7 +62,7 @@ ROOT_URLCONF = APP_NAME + '.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
