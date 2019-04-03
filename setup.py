@@ -5,17 +5,17 @@ with open('requirements.txt') as fh:
 
 setup(
 
-    name='newproject',
+    name='newapp',
     version='0.0.1',
-    url='https://github.com/jlandercy/newproject',
+    url='https://github.com/jlandercy/newapp',
     license='GPL v.3',
     author='Jean Landercy',
     author_email='jeanlandercy@live.com',
-    description='Minimal Python 3 Package',
+    description='Minimal Django Package',
 
     packages=find_packages(exclude=[]),
     package_data={
-       'newproject': ['resources/*']
+       'newapp': []
     },
     scripts=[],
     python_requires='>=3.6',
@@ -27,7 +27,7 @@ setup(
          "Topic :: Scientific/Engineering",
     ],
     entry_points={
-        'console_scripts': ['newproject=neproject._new:main']
+        'console_scripts': []
     },
     zip_safe=False,
 

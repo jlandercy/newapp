@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import base64
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fuh$-7gto%+9!56%ftiznz#m@w6r74--j@-l-w7omthd!-=cl&'
+SECRET_KEY = os.environ.get('APP_SECRETKEY', base64.b64encode(os.urandom(64)).decode())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
