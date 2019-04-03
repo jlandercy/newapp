@@ -133,3 +133,7 @@ STATIC_URL = '/static/'
 
 # https://simpleisbetterthancomplex.com/tutorial/2018/08/13/how-to-use-bootstrap-4-forms-with-django.html
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
