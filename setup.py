@@ -6,7 +6,7 @@ with open('requirements.txt') as fh:
 setup(
 
     name='newproject',
-    version='0.0.3',
+    version='0.0.1',
     url='https://github.com/jlandercy/newproject',
     license='GPL v.3',
     author='Jean Landercy',
