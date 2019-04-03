@@ -2,13 +2,13 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}Details | newapp{% endblock %}
+{% block title %}Polls Details | newapp{% endblock %}
 
 {% block content %}
 
 <h1>{{ question.question_text }}</h1>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}<div class="alert alert-danger"><strong>{{ error_message }}</strong></div>{% endif %}
 
 <form action="{% url 'polls:vote' question.id %}" method="post">
 {% csrf_token %}
