@@ -15,10 +15,8 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = CustomUser
-        fields = ('username', 'email')# , 'tosaccepted')#, 'avatarcode')
+        fields = '__all__' #('username', 'email')# , 'tosaccepted')#, 'avatarcode')
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
 
 
 class CustomUserChangeForm(UserChangeForm):

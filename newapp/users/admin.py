@@ -11,20 +11,22 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    print(UserAdmin.fieldsets)
 
     # https://gist.github.com/haxoza/7921eaf966a16ffb95a0
-    # add_fieldsets = (
-    #     ('Additional Information', {
-    #         #'classes': ('wide',),
-    #         'fields': ('tosaccepted',)}
-    #      ),
-    # )
+    # https://stackoverflow.com/questions/50436596/django-useradmins-add-fieldsets
+    additional = [
+        ('Additional Information', {
+            'fields': ('tosaccepted', 'avatarcode')}
+         ),
+    ]
 
-    # list_display = ('username', 'email', 'last_login', 'date_joined', 'is_superuser', 'is_staff', 'is_active', 'tosaccepted')
-    # list_filter = ('is_staff', 'is_superuser', 'is_active', 'tosaccepted')
-    # search_fields = ('username', 'first_name', 'last_name', 'email')
-    # ordering = ('username',)
+    fieldsets = tuple(list(UserAdmin.fieldsets) + additional)
+    add_fieldsets = tuple(list(UserAdmin.add_fieldsets) + additional)
+
+    list_display = ('username', 'email', 'last_login', 'date_joined', 'is_superuser', 'is_staff', 'is_active', 'tosaccepted')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'tosaccepted')
+    search_fields = ('username', 'first_name', 'last_name', 'email')
+    ordering = ('username',)
     # readonly_fields = ('last_login', 'date_joined', 'tosaccepted')
 
 
