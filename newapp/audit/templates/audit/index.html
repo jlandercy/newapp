@@ -16,9 +16,18 @@
 <p>There are <strong>{{ users|length }}</strong> connected user(s).</p>
 
 <div>
+    {% for s in sessions %}
+    <button type="button" class="btn btn-primary">
+    <strong>{{ s.user_id__username }}</strong> <span class="badge badge-light">{{ s.count }}</span>
+    </button>
+    {% endfor %}
+</div>
+
+<h2>Test</h2>
+<div>
     {% for u in users %}
     <button type="button" class="btn btn-primary">
-    <strong>{{ u.user_id__username }}</strong> <span class="badge badge-light">{{ u.count }}</span>
+    <strong>{{ u.username }}</strong> <span class="badge badge-light">{{ u.id }}</span>
     </button>
     {% endfor %}
 </div>

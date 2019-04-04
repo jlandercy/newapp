@@ -9,7 +9,7 @@
 <h1>Sessions</h1>
 
 <h2>Active</h2>
-<p>There are  <strong>{{ actives|length }}</strong> active session(s).</p>
+<p>There are  <strong>{{ sessions|length }}</strong> active session(s).</p>
 
 <table class="table table-striped">
   <thead>
@@ -21,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for sess in actives %}
+  {% for sess in sessions %}
     <tr>
       <th scope="row">{{ sess.id }}</th>
         <th scope="row">{{ sess.user.username }}</th>
