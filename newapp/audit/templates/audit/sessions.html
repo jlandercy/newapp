@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Audit Sessions | newapp{% endblock %}
+
+{% block content %}
+
+<h1>Sessions</h1>
+
+<h2>Active</h2>
+<p>There are  <strong>{{ actives|length }}</strong> active session(s).</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Logged In</th>
+        <th scope="col">Elapsed</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for sess in actives %}
+    <tr>
+      <th scope="row">{{ sess.id }}</th>
+        <th scope="row">{{ sess.user.username }}</th>
+      <td>{{ sess.loggedin|date:'Y-m-d H:i:s' }}</td>
+      <td>{{ sess.elapsed }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

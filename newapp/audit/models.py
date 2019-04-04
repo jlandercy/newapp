@@ -1,10 +1,12 @@
 import datetime
 
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth import user_logged_in, user_logged_out
 from django.contrib.sessions.models import Session
 from django.contrib.postgres.fields import JSONField
 from django.core.serializers.json import DjangoJSONEncoder
+from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
 
 from users.models import CustomUser
@@ -35,7 +37,7 @@ class UserSession(models.Model):
     def logout_user(sender, request, user, **kwargs):
         try:
             u = UserSession.objects.get(user=user, session_id=request.session.session_key)
-            u.loggedout = datetime.datetime.utcnow()
+            u.loggedout = timezone.now()
             u.save()
             # u.delete()
         except UserSession.DoesNotExist:
@@ -48,4 +50,4 @@ class UserSession(models.Model):
         if self.loggedout:
             return self.loggedout - self.loggedin
         else:
-            return datetime.datetime.utcnow() - self.loggedin
+            return timezone.now() - self.loggedin
