@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [os.environ.get('APP_HOST', 'localhost')]
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',  # Custom User Model
     'polls.apps.PollsConfig',  # Dummy app from tutorial
     # -----
     'django.contrib.admin',
@@ -45,7 +46,6 @@ INSTALLED_APPS = [
     # -----
     'crispy_forms',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,6 +92,8 @@ DATABASES = {
     }
 }
 
+# https://wsvincent.com/django-tips-custom-user-model/
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
