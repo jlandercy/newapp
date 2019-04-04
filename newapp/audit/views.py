@@ -27,6 +27,7 @@ class SessionsView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'audit/sessions.html'
 
     def get_context_data(self, **kwargs):
+        print(kwargs)
         context = super().get_context_data(**kwargs)
         context['sessions'] = UserSession.objects.filter(loggedout=None).order_by('-id')
 
