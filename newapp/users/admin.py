@@ -27,7 +27,7 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'tosaccepted')
     search_fields = ('username', 'first_name', 'last_name', 'email')
     ordering = ('username',)
-    # readonly_fields = ('last_login', 'date_joined', 'tosaccepted')
+    readonly_fields = ('last_login', 'date_joined')
 
 
 # admin.site.unregister(User)

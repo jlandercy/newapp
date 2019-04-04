@@ -32,5 +32,3 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = ('username', 'email')#, 'tosaccepted')
 
-    # def clean_password(self):
-    #     return self.initial["password"]
