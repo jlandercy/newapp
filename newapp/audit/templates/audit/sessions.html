@@ -2,13 +2,11 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}Audit Sessions | newapp{% endblock %}
+{% block title %}{{ subtitle }} | newapp{% endblock %}
 
 {% block content %}
 
-<h1>Sessions</h1>
-
-<h2>{{ subtitle|safe }}</h2>
+<h1>{{ subtitle }}</h1>
 <p>Result: <strong>{{ sessions|length }}</strong> session(s)</p>
 
 <table class="table table-striped">
@@ -29,7 +27,7 @@
         <th scope="row"><code>{{ sess.user.username }}</code></th>
         <td>{{ sess.loggedin|date:'Y-m-d H:i:s' }}</td>
         <td>{{ sess.loggedout|date:'Y-m-d H:i:s' }}</td>
-        <td>{{ sess.elapsed }}</td>
+        <td>{{ sess.elapsed|safe }}</td>
         <td>{{ sess.is_active }}</td>
     </tr>
   {% endfor %}

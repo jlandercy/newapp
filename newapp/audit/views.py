@@ -34,7 +34,7 @@ class SessionsView(LoginRequiredMixin, generic.TemplateView):
             u = get_object_or_404(CustomUser, pk=pk)
             if (u == self.request.user) or (self.request.user.is_superuser):
                 context['sessions'] = UserSession.objects.filter(user_id=pk).order_by('-id')
-                context['subtitle'] = "Sessions for <code>%s</code>" % u.username
+                context['subtitle'] = "Sessions for %s" % u.username
             else:
                 raise SuspiciousOperation("Access denied for %s (you are logged as %s)" % (u, self.request.user))
         else:
