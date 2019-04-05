@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [os.environ.get('APP_HOST', 'localhost')]
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',  # Custom User Model
+    'audit.apps.AuditConfig',  # Audit App
     'polls.apps.PollsConfig',  # Dummy app from tutorial
     # -----
     'django.contrib.admin',

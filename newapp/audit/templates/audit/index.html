@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Audit | newapp{% endblock %}
+
+{% block content %}
+
+<h1>Audit</h1>
+
+
+<h2>Sessions</h2>
+<p>Result: <strong>{{ sessions|length }}</strong> connected user(s), see <a href="{% url 'audit:sessions' %}">active sessions</a>.</p>
+
+<div>
+    {% for s in sessions %}
+    <a href="#" class="btn btn-primary active" role="button" aria-pressed="true">
+    <strong>{{ s.user_id__username }}</strong> <span class="badge badge-light">{{ s.count }}</span>
+    </a>
+    {% endfor %}
+</div>
+
+<h2>Users</h2>
+<p>Result: <strong>{{ users|length }}</strong> user(s).</p>
+
+<div>
+    {% for u in users %}
+    <a href="{% url 'audit:sessions' u.id %}" class="btn btn-primary active" role="button" aria-pressed="true">
+    <strong>{{ u.username }}</strong> <span class="badge badge-light">{{ u.id }}</span>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}
