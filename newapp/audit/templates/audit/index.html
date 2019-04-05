@@ -8,27 +8,26 @@
 
 <h1>Audit</h1>
 
-<div>
-    <a href="{% url 'audit:sessions' %}" class="btn btn-primary">Sessions</a>
-</div>
 
-<h2>Users</h2>
-<p>There are <strong>{{ users|length }}</strong> connected user(s).</p>
+<h2>Sessions</h2>
+<p>Result: <strong>{{ sessions|length }}</strong> connected user(s), see <a href="{% url 'audit:sessions' %}">active sessions</a>.</p>
 
 <div>
     {% for s in sessions %}
-    <button type="button" class="btn btn-primary">
+    <a href="#" class="btn btn-primary active" role="button" aria-pressed="true">
     <strong>{{ s.user_id__username }}</strong> <span class="badge badge-light">{{ s.count }}</span>
-    </button>
+    </a>
     {% endfor %}
 </div>
 
-<h2>Test</h2>
+<h2>Users</h2>
+<p>Result: <strong>{{ users|length }}</strong> user(s).</p>
+
 <div>
     {% for u in users %}
-    <button type="button" class="btn btn-primary">
+    <a href="{% url 'audit:sessions' u.id %}" class="btn btn-primary active" role="button" aria-pressed="true">
     <strong>{{ u.username }}</strong> <span class="badge badge-light">{{ u.id }}</span>
-    </button>
+    </a>
     {% endfor %}
 </div>
 

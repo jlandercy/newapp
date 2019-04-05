@@ -32,9 +32,11 @@ class UserSession(models.Model):
         return self.user.username
 
     def login_user(sender, request, user, **kwargs):
+        """Log User Session creation"""
         UserSession(user=user, session_id=request.session.session_key, headers=request.META).save()
 
     def logout_user(sender, request, user, **kwargs):
+        """Log User Session destruction"""
         try:
             u = UserSession.objects.get(user=user, session_id=request.session.session_key)
             u.loggedout = timezone.now()
@@ -43,11 +45,17 @@ class UserSession(models.Model):
         except UserSession.DoesNotExist:
             pass
 
+    # Event binding:
     user_logged_in.connect(login_user)
     user_logged_out.connect(logout_user)
 
     def elapsed(self):
+        """Elapsed time since logged in"""
         if self.loggedout:
             return self.loggedout - self.loggedin
         else:
             return timezone.now() - self.loggedin
+
+    def is_active(self):
+        """Is the session active"""
+        return (self.loggedout is None) or not(self.session_id is None)

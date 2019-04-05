@@ -8,8 +8,8 @@
 
 <h1>Sessions</h1>
 
-<h2>Active</h2>
-<p>There are  <strong>{{ sessions|length }}</strong> active session(s).</p>
+<h2>{{ subtitle|safe }}</h2>
+<p>Result: <strong>{{ sessions|length }}</strong> session(s)</p>
 
 <table class="table table-striped">
   <thead>
@@ -17,16 +17,20 @@
         <th scope="col">#</th>
         <th scope="col">User Name</th>
         <th scope="col">Logged In</th>
+        <th scope="col">Logged Out</th>
         <th scope="col">Elapsed</th>
+        <th scope="col">Active</th>
     </tr>
   </thead>
   <tbody>
   {% for sess in sessions %}
     <tr>
-      <th scope="row">{{ sess.id }}</th>
-        <th scope="row">{{ sess.user.username }}</th>
-      <td>{{ sess.loggedin|date:'Y-m-d H:i:s' }}</td>
-      <td>{{ sess.elapsed }}</td>
+        <th scope="row">{{ sess.id }}</th>
+        <th scope="row"><code>{{ sess.user.username }}</code></th>
+        <td>{{ sess.loggedin|date:'Y-m-d H:i:s' }}</td>
+        <td>{{ sess.loggedout|date:'Y-m-d H:i:s' }}</td>
+        <td>{{ sess.elapsed }}</td>
+        <td>{{ sess.is_active }}</td>
     </tr>
   {% endfor %}
   </tbody>
