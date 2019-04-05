@@ -36,7 +36,7 @@ class SessionsView(LoginRequiredMixin, generic.TemplateView):
                 context['sessions'] = UserSession.objects.filter(user_id=pk).order_by('-id')
                 context['subtitle'] = "Sessions for <code>%s</code>" % u.username
             else:
-                raise SuspiciousOperation("Access denied for %s" % u)
+                raise SuspiciousOperation("Access denied for %s (you are logged as %s)" % (u, self.request.user))
         else:
             context['sessions'] = [u for u in UserSession.objects.all().order_by('-id') if u.is_active()]
             context['subtitle'] = "Active Sessions"

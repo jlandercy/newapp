@@ -44,8 +44,10 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               {% if user.is_superuser %}
               <a class="dropdown-item" href="{% url 'admin:index' %}">&#9872; Admin</a>
-              {% endif %}
               <a class="dropdown-item" href="{% url 'audit:index' %}">&#9797; Audit</a>
+              <div class="dropdown-divider"></div>
+              {% endif %}
+              <a class="dropdown-item" href="{% url 'users:profile' user.id %}">&#9863; Profile</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'logout' %}">&#10087; Logout</a>
           </div>
