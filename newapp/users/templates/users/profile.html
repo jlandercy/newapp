@@ -13,7 +13,7 @@
     {% for key, value in user_map.items %}
         <tr>
             <th scope="row" align="right">{{ key }}</th>
-            <td>{{ value|safe }}</td>
+            <td>{{ value|safe }}{% if key == 'avatarcode' %}&nbsp;<code>{{value}}</code>{% endif %}</td>
         </tr>
     {% endfor %}
     </tbody>
