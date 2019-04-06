@@ -4,6 +4,10 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
+# from braces import views
+# https://django-braces.readthedocs.io/en/latest/access.html#multiplepermissionsrequiredmixin
+# https://django-braces.readthedocs.io/en/latest/access.html#permissionrequiredmixin
+
 from .models import Question, Choice
 
 
